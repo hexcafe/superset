@@ -259,6 +259,21 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        [
+          {
+            name: 'padAngle',
+            config: {
+              type: 'TextControl',
+              label: t('Pad Angle'),
+              renderTrigger: true,
+              value: 0,
+              isInt: true,
+              description: t(
+                'The separation between adjacent pie slices in degrees.',
+              ),
+            },
+          },
+        ],
       ],
     },
   ],

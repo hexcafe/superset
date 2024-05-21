@@ -176,6 +176,7 @@ export default function transformProps(
     sliceId,
     showTotal,
     roseType,
+    padAngle,
   }: EchartsPieFormData = {
     ...DEFAULT_LEGEND_FORM_DATA,
     ...DEFAULT_PIE_FORM_DATA,
@@ -286,6 +287,7 @@ export default function transformProps(
       ...chartPadding,
       animation: false,
       roseType: roseType || undefined,
+      padAngle: padAngle || 0,
       radius: [`${donut ? innerRadius : 0}%`, `${outerRadius}%`],
       center: ['50%', '50%'],
       avoidLabelOverlap: true,
