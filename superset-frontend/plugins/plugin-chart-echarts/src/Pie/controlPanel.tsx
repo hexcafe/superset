@@ -259,6 +259,18 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        [
+          {
+            name: 'padAngle',
+            config: {
+              type: 'TextControl',
+              label: t('Pad Angle'),
+              renderTrigger: true,
+              default: 0,
+              description: t('Pad Angle'),
+            },
+          },
+        ],
       ],
     },
   ],
