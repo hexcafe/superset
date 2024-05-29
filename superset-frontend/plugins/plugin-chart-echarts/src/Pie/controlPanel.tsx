@@ -268,7 +268,9 @@ const config: ControlPanelConfig = {
               renderTrigger: true,
               value: 0,
               isInt: true,
-              description: t('The separation between adjacent pie slices in degrees.'),
+              description: t(
+                'The separation between adjacent pie slices in degrees.',
+              ),
             },
           },
         ],
