@@ -51,14 +51,48 @@ import { Refs } from '../types';
 
 const percentFormatter = getNumberFormatter(NumberFormats.PERCENT_2_POINT);
 
+const formatTemplate = (
+  template: string,
+  formattedParams: {
+    name: string;
+    value: string;
+    percent: string;
+  },
+  rawParams: Pick<CallbackDataParams, 'name' | 'value' | 'percent'>,
+) => {
+  // This function supports two forms of template variables:
+  // 1. {name}, {value}, {percent}, for values formatted by number formatter.
+  // 2. {a}, {b}, {c}, {d}, compatible with ECharts formatter.
+  //
+  // \n is supported to represent a new line.
+
+  const items = {
+    '{name}': formattedParams.name,
+    '{value}': formattedParams.value,
+    '{percent}': formattedParams.percent,
+    '{a}': '',
+    '{b}': rawParams.name,
+    '{c}': `${rawParams.value}`,
+    '{d}': `${rawParams.percent}`,
+    '\\n': '\n',
+  };
+
+  return Object.entries(items).reduce(
+    (acc, [key, value]) => acc.replaceAll(key, value),
+    template,
+  );
+};
+
 export function formatPieLabel({
   params,
   labelType,
+  labelTemplate,
   numberFormatter,
   sanitizeName = false,
 }: {
   params: Pick<CallbackDataParams, 'name' | 'value' | 'percent'>;
   labelType: EchartsPieLabelType;
+  labelTemplate?: string;
   numberFormatter: ValueFormatter;
   sanitizeName?: boolean;
 }): string {
@@ -82,6 +116,19 @@ export function formatPieLabel({
       return `${name}: ${formattedPercent}`;
     case EchartsPieLabelType.ValuePercent:
       return `${formattedValue} (${formattedPercent})`;
+    case EchartsPieLabelType.Template:
+      if (!labelTemplate) {
+        return '';
+      }
+      return formatTemplate(
+        labelTemplate,
+        {
+          name,
+          value: formattedValue,
+          percent: formattedPercent,
+        },
+        params,
+      );
     default:
       return name;
   }
@@ -162,6 +209,7 @@ export default function transformProps(
     labelsOutside,
     labelLine,
     labelType,
+    labelTemplate,
     legendMargin,
     legendOrientation,
     legendType,
@@ -267,6 +315,7 @@ export default function transformProps(
       params,
       numberFormatter,
       labelType,
+      labelTemplate: labelTemplate || undefined,
     });
 
   const defaultLabel = {
@@ -329,6 +378,7 @@ export default function transformProps(
           numberFormatter,
           labelType: EchartsPieLabelType.KeyValuePercent,
           sanitizeName: true,
+          labelTemplate: labelTemplate || undefined,
         }),
     },
     legend: {

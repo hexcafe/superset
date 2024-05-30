@@ -124,8 +124,27 @@ const config: ControlPanelConfig = {
                 ['key_percent', t('Category and Percentage')],
                 ['key_value_percent', t('Category, Value and Percentage')],
                 ['value_percent', t('Value and Percentage')],
+                ['template', t('Template')],
               ],
               description: t('What should be shown on the label?'),
+            },
+          },
+        ],
+        [
+          {
+            name: 'label_template',
+            config: {
+              type: 'TextControl',
+              label: t('Label Template'),
+              renderTrigger: true,
+              description: t(
+                'Data label formatter using string template.' +
+                  ' Supported variables include {name}, {value}, {percent} for integration with number formatters, ' +
+                  '{a}, {b}, {c}, {d} for ECharts compatibility. ' +
+                  '\\n is supported to represent a new line.',
+              ),
+              visibility: ({ controls }: ControlPanelsContainerProps) =>
+                controls?.label_type?.value === 'template',
             },
           },
         ],
