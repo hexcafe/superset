@@ -183,6 +183,11 @@ export default function transformProps(
     yAxisTitleMargin,
     yAxisTitlePosition,
     zoomable,
+    barWidth,
+    barMaxWidth,
+    barMinWidth,
+    barMinHeight,
+    barGap,
   }: EchartsTimeseriesFormData = { ...DEFAULT_FORM_DATA, ...formData };
   const refs: Refs = {};
   const groupBy = ensureIsArray(groupby);
@@ -524,6 +529,11 @@ export default function transformProps(
     },
     xAxis,
     yAxis,
+    barWidth: barWidth || undefined,
+    barMaxWidth: barMaxWidth || undefined,
+    barMinWidth: barMinWidth || undefined,
+    barMinHeight: barMinHeight || undefined,
+    barGap: barGap || undefined,
     tooltip: {
       ...getDefaultTooltip(refs),
       show: !inContextMenu,

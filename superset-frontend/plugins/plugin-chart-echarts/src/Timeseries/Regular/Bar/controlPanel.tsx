@@ -313,6 +313,77 @@ const config: ControlPanelConfig = {
           },
         ],
         ...legendSection,
+        [<ControlSubSectionHeader>{t('Bar Options')}</ControlSubSectionHeader>],
+        [
+          {
+            name: 'barWidth',
+            config: {
+              type: 'TextControl',
+              label: t('Bar Width'),
+              renderTrigger: true,
+              description: t(
+                "The width of the bar. Adaptive when not specified. Can be an absolute value like 40 or a percent value like '60%'. The percent is based on the calculated category width.",
+              ),
+            },
+          },
+        ],
+        [
+          {
+            name: 'barMaxWidth',
+            config: {
+              type: 'TextControl',
+              label: t('Bar Max Width'),
+              renderTrigger: true,
+              description: t(
+                'The maximum width of the bar. Has higher priority than barWidth',
+              ),
+            },
+          },
+        ],
+        [
+          {
+            name: 'barMinWidth',
+            config: {
+              type: 'TextControl',
+              label: t('Bar Min Width'),
+              value: 1,
+              renderTrigger: true,
+              description: t(
+                'The minimum width of the bar. In cartesian the default value is 1, otherwise the default value if null.' +
+                  'Has higher priority than barWidth.',
+              ),
+            },
+          },
+        ],
+        [
+          {
+            name: 'barMinHeight',
+            config: {
+              type: 'TextControl',
+              label: t('Bar Min Height'),
+              value: 1,
+              renderTrigger: true,
+              description: t(
+                'The minimum width of bar. It could be used to avoid the following situation: the interaction would be affected when the value of some data item is too small.',
+              ),
+            },
+          },
+        ],
+        [
+          {
+            name: 'barGap',
+            config: {
+              type: 'TextControl',
+              label: t('Bar Gap'),
+              renderTrigger: true,
+              description: t(
+                "The gap between bars between different series, is a percent value like '30%', which means 30% of the bar width. " +
+                  "Set barGap as '-100%' can overlap bars that belong to different series, which is useful when making a series of bar be background. " +
+                  "In a single coordinate system, this attribute is shared by multiple 'bar' series. This attribute should be set on the last 'bar' series in the coordinate system, then it will be adopted by all 'bar' series in the coordinate system.",
+              ),
+            },
+          },
+        ],
         [<ControlSubSectionHeader>{t('X Axis')}</ControlSubSectionHeader>],
         ...createAxisControl('x'),
         ...richTooltipSection,
