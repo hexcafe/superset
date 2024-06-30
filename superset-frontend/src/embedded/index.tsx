@@ -205,6 +205,7 @@ window.addEventListener('message', function embeddedPageInitializer(event) {
       embeddedApi.getDashboardPermalink,
     );
     Switchboard.defineMethod('getActiveTabs', embeddedApi.getActiveTabs);
+    Switchboard.defineMethod('getDataMask', embeddedApi.getDataMask);
     Switchboard.start();
   }
 });
