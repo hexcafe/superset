@@ -183,6 +183,9 @@ export default function transformProps(
     yAxisTitleMargin,
     yAxisTitlePosition,
     zoomable,
+    zoomStart,
+    zoomEnd,
+    zoomLock,
     barWidth,
     barMaxWidth,
     barMinWidth,
@@ -610,8 +613,9 @@ export default function transformProps(
       ? [
           {
             type: 'slider',
-            start: TIMESERIES_CONSTANTS.dataZoomStart,
-            end: TIMESERIES_CONSTANTS.dataZoomEnd,
+            start: zoomStart || TIMESERIES_CONSTANTS.dataZoomStart,
+            end: zoomEnd || TIMESERIES_CONSTANTS.dataZoomEnd,
+            zoomLock: zoomLock || false,
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
             yAxisIndex: isHorizontal ? 0 : undefined,
           },
