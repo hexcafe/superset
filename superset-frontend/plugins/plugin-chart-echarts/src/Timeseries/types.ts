@@ -99,6 +99,7 @@ export type EchartsTimeseriesFormData = QueryFormData & {
   barMinWidth?: number | string | null;
   barMinHeight?: number | string | null;
   barGap?: number | string | null;
+  xAxisBreakLine?: number | null;
 } & LegendFormData &
   TitleFormData;
 

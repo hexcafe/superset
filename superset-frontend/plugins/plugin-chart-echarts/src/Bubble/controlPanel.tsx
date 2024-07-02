@@ -135,6 +135,20 @@ const config: ControlPanelConfig = {
         [xAxisLabelRotation],
         [
           {
+            name: 'xAxisBreakLine',
+            config: {
+              type: 'SliderControl',
+              label: t('BreakLine'),
+              renderTrigger: true,
+              min: 0,
+              max: 100,
+              step: 1,
+              default: 0,
+            },
+          },
+        ],
+        [
+          {
             name: 'x_axis_title_margin',
             config: {
               type: 'SelectControl',

@@ -191,6 +191,7 @@ export default function transformProps(
     barMinWidth,
     barMinHeight,
     barGap,
+    xAxisBreakLine,
   }: EchartsTimeseriesFormData = { ...DEFAULT_FORM_DATA, ...formData };
   const refs: Refs = {};
   const groupBy = ensureIsArray(groupby);
@@ -441,6 +442,21 @@ export default function transformProps(
       ? getXAxisFormatter(xAxisTimeFormat)
       : String;
 
+  const xAxisFormatterBreakLineWrapper = (value: any, index: number) => {
+    let label = `${value}`;
+    if (xAxisFormatter) {
+      label = xAxisFormatter(value);
+    }
+
+    if (xAxisBreakLine) {
+      return `${label.slice(0, xAxisBreakLine)}\n${label.slice(
+        xAxisBreakLine,
+      )}`;
+    }
+
+    return label;
+  };
+
   const {
     setDataMask = () => {},
     setControlValue = () => {},
@@ -479,7 +495,7 @@ export default function transformProps(
     nameLocation: 'middle',
     axisLabel: {
       hideOverlap: true,
-      formatter: xAxisFormatter,
+      formatter: xAxisFormatterBreakLineWrapper,
       rotate: xAxisLabelRotation,
     },
     minorTick: { show: minorTicks },

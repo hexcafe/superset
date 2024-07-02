@@ -172,6 +172,22 @@ function createAxisControl(axis: 'x' | 'y'): ControlSetRow[] {
     ],
     [
       {
+        name: 'xAxisBreakLine',
+        config: {
+          type: 'SliderControl',
+          label: t('BreakLine'),
+          renderTrigger: true,
+          min: 0,
+          max: 100,
+          step: 1,
+          default: 0,
+          visibility: ({ controls }: ControlPanelsContainerProps) =>
+            isXAxis ? isVertical(controls) : isHorizontal(controls),
+        },
+      },
+    ],
+    [
+      {
         name: 'y_axis_format',
         config: {
           ...sharedControls.y_axis_format,

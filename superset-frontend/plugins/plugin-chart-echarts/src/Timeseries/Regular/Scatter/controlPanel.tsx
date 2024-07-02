@@ -117,6 +117,20 @@ const config: ControlPanelConfig = {
           },
         ],
         [xAxisLabelRotation],
+        [
+          {
+            name: 'xAxisBreakLine',
+            config: {
+              type: 'SliderControl',
+              label: t('BreakLine'),
+              renderTrigger: true,
+              min: 0,
+              max: 100,
+              step: 1,
+              default: 0,
+            },
+          },
+        ],
         // eslint-disable-next-line react/jsx-key
         ...richTooltipSection,
         // eslint-disable-next-line react/jsx-key

@@ -310,6 +310,20 @@ const config: ControlPanelConfig = {
         [<ControlSubSectionHeader>{t('X Axis')}</ControlSubSectionHeader>],
         ['x_axis_time_format'],
         [xAxisLabelRotation],
+        [
+          {
+            name: 'xAxisBreakLine',
+            config: {
+              type: 'SliderControl',
+              label: t('BreakLine'),
+              renderTrigger: true,
+              min: 0,
+              max: 100,
+              step: 1,
+              default: 0,
+            },
+          },
+        ],
         ...richTooltipSection,
         // eslint-disable-next-line react/jsx-key
         [<ControlSubSectionHeader>{t('Y Axis')}</ControlSubSectionHeader>],
