@@ -74,10 +74,10 @@
     "validate-release": "../RELEASING/validate_this_release.sh"
   },
   "browserslist": [
-    "last 3 chrome versions",
-    "last 3 firefox versions",
-    "last 3 safari versions",
-    "last 3 edge versions"
+    "chrome >= 89",
+    "last 10 firefox versions",
+    "last 10 safari versions",
+    "last 10 edge versions"
   ],
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
